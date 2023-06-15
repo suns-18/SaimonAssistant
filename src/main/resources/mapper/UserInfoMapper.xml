@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yu.saimonassistant.mapper.UserInfoMapper">
+  <resultMap id="BaseResultMap" type="yu.saimonassistant.entity.UserInfo">
+    
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="username" jdbcType="VARCHAR" property="username" />
+    <result column="password" jdbcType="VARCHAR" property="password" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    
+    delete from userinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.saimonassistant.entity.UserInfo" useGeneratedKeys="true">
+    
+    insert into userinfo (username, `password`)
+    values (#{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="yu.saimonassistant.entity.UserInfo">
+    
+    update userinfo
+    set username = #{username,jdbcType=VARCHAR},
+      `password` = #{password,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
+    
+    select id, username, `password`
+    from userinfo
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+
+  <select id="selectAll" resultMap="BaseResultMap">
+    
+    select id, username, `password`
+    from userinfo
+  </select>
+
+  <select id="selectByLoginInfo" parameterType="java.lang.String" resultMap="BaseResultMap">
+    select id, username, `password`
+    from userinfo
+    where username=#{username,jdbcType=VARCHAR} and password =#{password,jdbcType=VARCHAR}
+    for update
+  </select>
+</mapper>
