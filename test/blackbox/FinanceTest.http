@@ -1,0 +1,38 @@
+### Insert Test
+POST http://localhost:8085/api/finance/add
+Content-Type: application/json
+
+{
+  "id": "bf75ab9ce5ff62ba451867c2b02f82d5",
+  "title": "insert test",
+  "memo": "memomemomemomemomemomemo",
+  "date": {{$timestamp}},
+  "amount": 5.5
+}
+
+### Modify Test
+POST http://localhost:8085/api/finance/modify
+Content-Type: application/json
+
+{
+  "id": "bf75ab9ce5ff62ba451867c2b02f82d5",
+  "title": "modify test",
+  "memo": "memomemomemomemomemomemo",
+  "date": {{$timestamp}},
+  "amount": 115.5
+}
+
+### Sum Test
+POST http://localhost:8085/api/finance/stat
+Content-Type: application/json
+
+{
+  "startTime": "1970-01-20T20:33:01.639+00:00",
+  "endTime": "2028-01-01T20:33:00.639+00:00"
+}
+
+### QueryList Test
+POST http://localhost:8085/api/finance/queryList
+Content-Type: application/json
+
+{}
