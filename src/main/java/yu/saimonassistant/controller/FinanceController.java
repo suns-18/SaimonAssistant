@@ -5,6 +5,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
+import yu.saimonassistant.dto.FinanceRangeRequest;
+import yu.saimonassistant.dto.FinanceStatResponse;
 import yu.saimonassistant.dto.HttpResponse;
 import yu.saimonassistant.entity.Finance;
 import yu.saimonassistant.service.FinanceService;
