@@ -1,13 +1,13 @@
 package yu.saimonassistant.entity;
 
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.ToString;
+import lombok.*;
+import org.springframework.stereotype.Service;
 
 import java.util.Date;
 
-@EqualsAndHashCode(callSuper = true)
-@Data
+@Getter
+@Setter
+@ToString
 public class Finance extends Record{
 	private double amount;
 }
