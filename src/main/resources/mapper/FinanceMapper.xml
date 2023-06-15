@@ -6,7 +6,7 @@
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="amount" jdbcType="DOUBLE" property="amount" />
-    <result column="demo" jdbcType="LONGVARCHAR" property="memo" />
+    <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
   </resultMap>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
     <!-- @mbg.generated: generated automatically, do not modify! -->
@@ -15,10 +15,10 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.saimonassistant.entity.Finance" useGeneratedKeys="true">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into finance (title, `date`, amount, 
-      demo)
-    values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{amount,jdbcType=DOUBLE}, 
-      #{demo,jdbcType=LONGVARCHAR})
+    insert into finance (id, title, `date`, amount,
+      memo)
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{amount,jdbcType=DOUBLE},
+      #{memo,jdbcType=LONGVARCHAR})
   </insert>
   <update id="updateByPrimaryKey" parameterType="yu.saimonassistant.entity.Finance">
     <!-- @mbg.generated: generated automatically, do not modify! -->
@@ -26,18 +26,22 @@
     set title = #{title,jdbcType=VARCHAR},
       `date` = #{date,jdbcType=TIMESTAMP},
       amount = #{amount,jdbcType=DOUBLE},
-      demo = #{demo,jdbcType=LONGVARCHAR}
+      memo = #{memo,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
   <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    select id, title, `date`, amount, demo
+    select *
     from finance
     where id = #{id,jdbcType=VARCHAR}
   </select>
   <select id="selectAll" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    select id, title, `date`, amount, demo
+    select *
     from finance
+  </select>
+  <select id="selectByDuration" resultMap="BaseResultMap">
+    select * from finance
+    where `date` between #{startTime} and #{endTime}
   </select>
 </mapper>
