@@ -14,4 +14,5 @@ public interface FinanceMapper {
     List<Finance> selectByDuration(Date startTime, Date endTime);
     List<Finance> selectAll();
     int updateByPrimaryKey(Finance row);
+
 }
