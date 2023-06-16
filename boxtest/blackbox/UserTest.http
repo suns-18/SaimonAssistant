@@ -1,0 +1,29 @@
+### Illegal User Login: Bad Request
+POST http://localhost:8085/api/user/login
+Content-Type: application/json
+
+{
+  "id": "bf75ab9ce5ff62ba451867c2b02f82d5",
+  "title": "insert test",
+  "memo": "memomemomemomemomemomemo",
+  "date": {{$timestamp}},
+  "amount": 5.5
+}
+
+### Illegal User Login: User not exist
+POST http://localhost:8085/api/user/login
+Content-Type: application/json
+
+{
+  "username": "aghghg",
+  "password": "aghghgh"
+}
+
+### User Login: Successfully logged in
+POST http://localhost:8085/api/user/login
+Content-Type: application/json
+
+{
+  "username": "a",
+  "password": "a"
+}

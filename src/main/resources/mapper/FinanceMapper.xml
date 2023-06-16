@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="yu.saimonassistant.mapper.FinanceMapper">
-  <resultMap id="BaseResultMap" type="yu.saimonassistant.entity.Finance">
+<mapper namespace="yu.seimonassistant.mapper.FinanceMapper">
+  <resultMap id="BaseResultMap" type="yu.seimonassistant.entity.Finance">
     <id column="id" jdbcType="VARCHAR" property="id" />
     <result column="title" jdbcType="VARCHAR" property="title" />
     <result column="date" jdbcType="TIMESTAMP" property="date" />
@@ -13,14 +13,14 @@
     delete from finance
     where id = #{id,jdbcType=VARCHAR}
   </delete>
-  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.saimonassistant.entity.Finance" useGeneratedKeys="true">
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.seimonassistant.entity.Finance" useGeneratedKeys="true">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     insert into finance (id, title, `date`, amount,
       memo)
     values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{amount,jdbcType=DOUBLE},
       #{memo,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="yu.saimonassistant.entity.Finance">
+  <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Finance">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     update finance
     set title = #{title,jdbcType=VARCHAR},

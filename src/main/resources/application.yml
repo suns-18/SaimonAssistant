@@ -16,5 +16,5 @@ spring:
 
 
 mybatis:
-  type-aliases-package: yu.saimonassistant
+  type-aliases-package: yu.seimonassistant
   mapper-locations: classpath:mapper/*Mapper.xml

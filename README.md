@@ -1,8 +1,8 @@
-# SaimonAssistant
+# SeimonAssistant
 
-A personal assistant app. 
+A personal assistant app.
 
-## What is "Saimon"
-Sai means "Sea" in Yuniewugian(A natural language spoken in ROY, a fictional country)
+## What is "Seimon"
+Sei means "Sea" in Yuniewugian(A natural language spoken in ROY, a fictional country)
 
 and -mon means 
