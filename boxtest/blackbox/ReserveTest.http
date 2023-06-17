@@ -1,0 +1,32 @@
+### Insert Test
+POST http://localhost:8085/api/reserve/add
+Content-Type: application/json
+
+{
+  "id": "bf75ab9ce5ff62ba451867c2b02f82d5",
+  "title": "insert test",
+  "memo": "memomemomemomemomemomemo",
+  "date": {{$timestamp}},
+  "startTime": {{$timestamp}},
+  "endTime": {{$timestamp}}
+}
+
+### Modify Test
+POST http://localhost:8085/api/reserve/modify
+Content-Type: application/json
+
+{
+  "id": "bf75ab9ce5ff62ba451867c2b02f82d5",
+  "title": "insert test",
+  "memo": "memomemomemomemomemomemo",
+  "date": {{$timestamp}},
+  "startTime": {{$timestamp}},
+  "endTime": {{$timestamp}}
+}
+
+
+### QueryList Test
+POST http://localhost:8085/api/reserve/queryList
+Content-Type: application/json
+
+{}
