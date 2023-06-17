@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import yu.seimonassistant.controller.UserInfoController;
-import yu.seimonassistant.dto.HttpResponse;
+import yu.seimonassistant.response.HttpResponse;
 import yu.seimonassistant.entity.UserInfo;
 
 @SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)

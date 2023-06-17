@@ -5,7 +5,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
-import yu.seimonassistant.dto.HttpResponse;
+import yu.seimonassistant.response.HttpResponse;
 import yu.seimonassistant.entity.UserInfo;
 import yu.seimonassistant.service.UserInfoService;
 
