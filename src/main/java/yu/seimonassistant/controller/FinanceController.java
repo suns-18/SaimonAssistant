@@ -35,8 +35,7 @@ public class FinanceController {
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public HttpResponse modifyFinance(@RequestBody Finance finance) {
-		int result = -1;
-		result = service.modifyFinanceInfo(finance);
+		int result = service.modifyFinanceInfo(finance);
 		try {
 			if (result == 0)
 				return new HttpResponse(0, result, "修改失败");
