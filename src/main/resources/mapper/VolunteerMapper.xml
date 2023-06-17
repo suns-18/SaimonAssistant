@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="yu.seimonassistant.mapper.VolunteerMapper">
+  <resultMap id="BaseResultMap" type="yu.seimonassistant.entity.Volunteer">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    <id column="id" jdbcType="VARCHAR" property="id" />
+    <result column="title" jdbcType="VARCHAR" property="title" />
+    <result column="date" jdbcType="TIMESTAMP" property="date" />
+    <result column="assignment" jdbcType="DECIMAL" property="assignment" />
+    <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    delete from volunteer
+    where id = #{id,jdbcType=VARCHAR}
+  </delete>
+  <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.seimonassistant.entity.Volunteer" useGeneratedKeys="true">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    insert into volunteer (title, `date`, `assignment`, 
+      memo)
+    values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{assignment,jdbcType=DECIMAL}, 
+      #{memo,jdbcType=LONGVARCHAR})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Volunteer">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    update volunteer
+    set title = #{title,jdbcType=VARCHAR},
+      `date` = #{date,jdbcType=TIMESTAMP},
+      `assignment` = #{assignment,jdbcType=DECIMAL},
+      memo = #{memo,jdbcType=LONGVARCHAR}
+    where id = #{id,jdbcType=VARCHAR}
+  </update>
+  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select id, title, `date`, `assignment`, memo
+    from volunteer
+    where id = #{id,jdbcType=VARCHAR}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap">
+    <!-- @mbg.generated: generated automatically, do not modify! -->
+    select id, title, `date`, `assignment`, memo
+    from volunteer
+  </select>
+</mapper>
