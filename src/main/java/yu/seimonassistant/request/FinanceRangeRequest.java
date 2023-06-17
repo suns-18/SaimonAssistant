@@ -1,4 +1,4 @@
-package yu.seimonassistant.dto;
+package yu.seimonassistant.request;
 
 import lombok.Data;
 

@@ -1,4 +1,4 @@
-package yu.seimonassistant.dto;
+package yu.seimonassistant.response;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
