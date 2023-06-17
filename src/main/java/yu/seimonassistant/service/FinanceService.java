@@ -2,8 +2,8 @@ package yu.seimonassistant.service;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import yu.seimonassistant.dto.FinanceRangeRequest;
-import yu.seimonassistant.dto.FinanceStatResponse;
+import yu.seimonassistant.request.FinanceRangeRequest;
+import yu.seimonassistant.response.FinanceStatResponse;
 import yu.seimonassistant.entity.Finance;
 import yu.seimonassistant.mapper.FinanceMapper;
 import yu.seimonassistant.util.UUIDUtil;

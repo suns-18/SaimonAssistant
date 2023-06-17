@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import yu.seimonassistant.controller.FinanceController;
-import yu.seimonassistant.dto.FinanceRangeRequest;
+import yu.seimonassistant.request.FinanceRangeRequest;
 import yu.seimonassistant.entity.Finance;
 import yu.seimonassistant.util.UUIDUtil;
 
