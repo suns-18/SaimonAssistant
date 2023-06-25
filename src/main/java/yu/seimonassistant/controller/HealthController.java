@@ -18,7 +18,7 @@ public class HealthController {
     private HealthService healthService;
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public HttpResponse deleteHealth(@RequestBody Health health) {
+    public HttpResponse delete(@RequestBody Health health) {
         int result = -1;
         try {
             result = healthService.deleteById(health);
@@ -32,7 +32,7 @@ public class HealthController {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public HttpResponse modifyHealth(@RequestBody Health health) {
+    public HttpResponse modify(@RequestBody Health health) {
         int result = -1;
         result = healthService.modifyHealthInfo(health);
         try {
@@ -47,7 +47,7 @@ public class HealthController {
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.POST)
-    public HttpResponse queryHealthList() {
+    public HttpResponse queryList() {
         try {
             List<Health> result = healthService.queryHealthList();
             if (result.isEmpty())
@@ -61,7 +61,7 @@ public class HealthController {
     }
 
     @RequestMapping(value = "/query", method = RequestMethod.POST)
-    public HttpResponse queryHealth(@RequestBody Health health) {
+    public HttpResponse queryById(@RequestBody Health health) {
         try {
             Health result = healthService.selectById(health);
             if (result == null)
@@ -75,7 +75,7 @@ public class HealthController {
     }
 
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public HttpResponse addHealth(@RequestBody Health health){
+    public HttpResponse add(@RequestBody Health health){
         int result = -1;
         try {
             result= healthService.addHealthInfo(health);
