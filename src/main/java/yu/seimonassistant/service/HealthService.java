@@ -17,7 +17,7 @@ public class HealthService {
         return healthMapper.deleteByPrimaryKey(health.getId());
     }
 
-    public int modifyHealthInfo(Health health){ return healthMapper.updateByPrimaryKey(health); }
+    public int update(Health health){ return healthMapper.updateByPrimaryKey(health); }
 
     public int addHealthInfo(Health health){
         // 插入前生成ID
@@ -25,7 +25,7 @@ public class HealthService {
         return healthMapper.insert(health);
     }
 
-    public List<Health> queryHealthList(){
+    public List<Health> queryList(){
         return healthMapper.selectAll();
     }
 

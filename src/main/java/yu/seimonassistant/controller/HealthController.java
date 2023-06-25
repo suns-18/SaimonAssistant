@@ -15,13 +15,28 @@ import java.util.List;
 @RequestMapping(value = "/api/health")
 public class HealthController {
     @Autowired
-    private HealthService healthService;
+    private HealthService service;
+
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public HttpResponse add(@RequestBody Health health) {
+        int result = -1;
+        try {
+            result = service.addHealthInfo(health);
+            if (result == 0)
+                return new HttpResponse(0, result, "添加失败");
+            else
+                return new HttpResponse(1, result, "添加成功");
+
+        } catch (Exception e) {
+            return new HttpResponse(0, result, "请求错误");
+        }
+    }
 
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public HttpResponse delete(@RequestBody Health health) {
         int result = -1;
         try {
-            result = healthService.deleteById(health);
+            result = service.deleteById(health);
             if (result == 0)
                 return new HttpResponse(0, result, "删除失败");
             else
@@ -34,7 +49,7 @@ public class HealthController {
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
     public HttpResponse modify(@RequestBody Health health) {
         int result = -1;
-        result = healthService.modifyHealthInfo(health);
+        result = service.update(health);
         try {
             if (result == 0)
                 return new HttpResponse(0, result, "修改失败");
@@ -49,7 +64,7 @@ public class HealthController {
     @RequestMapping(value = "/queryList", method = RequestMethod.POST)
     public HttpResponse queryList() {
         try {
-            List<Health> result = healthService.queryHealthList();
+            List<Health> result = service.queryList();
             if (result.isEmpty())
                 return new HttpResponse(1, result, "健康记录为空");
             else
@@ -63,29 +78,15 @@ public class HealthController {
     @RequestMapping(value = "/query", method = RequestMethod.POST)
     public HttpResponse queryById(@RequestBody Health health) {
         try {
-            Health result = healthService.selectById(health);
+            var result = service.selectById(health);
             if (result == null)
                 return new HttpResponse(0, null, "不存在");
             else
                 return new HttpResponse(1, result, "查询成功");
         } catch (Exception e) {
-            e.printStackTrace();
             return new HttpResponse(0, null, "请求错误");
         }
     }
 
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public HttpResponse add(@RequestBody Health health){
-        int result = -1;
-        try {
-            result= healthService.addHealthInfo(health);
-            if (result == 0)
-                return new HttpResponse(0,result,"添加失败");
-            else
-                return new HttpResponse(1,result,"添加成功");
 
-        } catch (Exception e) {
-            return new HttpResponse(0,result,"请求错误");
-        }
-    }
 }
