@@ -8,7 +8,7 @@
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="delete" parameterType="java.lang.String">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     delete from investment
     where id = #{id,jdbcType=VARCHAR}
@@ -20,7 +20,7 @@
     values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR}
       )
   </insert>
-  <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Investment">
+  <update id="update" parameterType="yu.seimonassistant.entity.Investment">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     update investment
     set title = #{title,jdbcType=VARCHAR},
@@ -28,7 +28,7 @@
       memo = #{memo,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     select id, title, `date`, memo
     from investment

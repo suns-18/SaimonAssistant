@@ -9,7 +9,7 @@ public interface InvestmentMapper {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    int deleteByPrimaryKey(String id);
+    int delete(String id);
 
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -19,7 +19,7 @@ public interface InvestmentMapper {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    Investment selectByPrimaryKey(String id);
+    Investment selectById(String id);
 
     /**
      * @mbg.generated generated automatically, do not modify!
@@ -29,5 +29,5 @@ public interface InvestmentMapper {
     /**
      * @mbg.generated generated automatically, do not modify!
      */
-    int updateByPrimaryKey(Investment row);
+    int update(Investment row);
 }
