@@ -20,7 +20,7 @@ public class FinanceController {
 	private FinanceService service;
 
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
-	public HttpResponse deleteFinance(@RequestBody Finance finance) {
+	public HttpResponse delete(@RequestBody Finance finance) {
 		int result = -1;
 		try {
 			result = service.deleteById(finance);
@@ -34,7 +34,7 @@ public class FinanceController {
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
-	public HttpResponse modifyFinance(@RequestBody Finance finance) {
+	public HttpResponse modify(@RequestBody Finance finance) {
 		int result = service.modifyFinanceInfo(finance);
 		try {
 			if (result == 0)
@@ -48,7 +48,7 @@ public class FinanceController {
 	}
 
 	@RequestMapping(value = "/queryList", method = RequestMethod.POST)
-	public HttpResponse queryFinanceList() {
+	public HttpResponse queryList() {
 		try {
 			List<Finance> result = service.queryFinanceList();
 			if (result.isEmpty())
@@ -62,7 +62,7 @@ public class FinanceController {
 	}
 
 	@RequestMapping(value = "/query", method = RequestMethod.POST)
-	public HttpResponse queryFinance(@RequestBody Finance finance) {
+	public HttpResponse queryById(@RequestBody Finance finance) {
 		try {
 			Finance result = service.selectById(finance);
 			if (result == null)
@@ -87,10 +87,10 @@ public class FinanceController {
 	}
 
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public HttpResponse addFinance(@RequestBody Finance finance){
+	public HttpResponse add(@RequestBody Finance finance){
 		int result = -1;
 		try {
-			result= service.addFinanceInfo(finance);
+			result= service.insert(finance);
 			if (result == 0)
 				return new HttpResponse(0,result,"添加失败");
 			else

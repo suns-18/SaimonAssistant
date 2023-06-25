@@ -49,7 +49,7 @@ public class FinanceService {
 		// 你这里获取的是单个，不是列表
 		return mapper.selectByPrimaryKey(finance.getId());
 	}
-	public int addFinanceInfo(Finance finance){
+	public int insert(Finance finance){
 		// 插入前生成ID
 		finance.setId(UUIDUtil.getOneUUID());
 		return mapper.insert(finance);
