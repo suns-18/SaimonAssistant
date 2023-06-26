@@ -27,8 +27,8 @@ class HealthTest {
 		Assertions.assertNull(c.queryById(h).getData(),
 			"查找一个不存在的健康信息记录");
 		log.info("query功能>>测试2：查询不存在的单一健康信息，返回为空，测试通过");
-		h.setId("0127d8a43700dfa784ef5ba41bd35500");
-		Assertions.assertNotNull(c.queryById(h).getData(),
+		h.setId("06591c911063db0bba63da28c9f7e353");
+		Assertions. assertNotNull(c.queryById(h).getData(),
 			"查找一个存在的健康信息记录");
 		log.info("query功能>>测试2：查询存在的单一健康信息，返回正常，测试通过");
 		h.setId(null);
@@ -45,8 +45,11 @@ class HealthTest {
 		log.info("add功能>>测试1：添加一条null的健康信息，无法添加，测试通过");
 
 		var h = new Health();
-		h.setTitle("aaa");
+		h.setTitle("guagau");
+		h.setId("111");
+
 		Assertions.assertEquals(c.add(h).getCode(), 1);
+
 		log.info("add功能>>测试2：添加一条健康信息，添加成功，测试通过");
 		h.setTitle("");
 		Assertions.assertEquals(c.add(h).getCode(), 0);
@@ -59,7 +62,7 @@ class HealthTest {
 		Assertions.assertEquals(c.modify(null).getData(), 0);
 		log.info("update功能>>测试1：更新一条null的健康信息，无法更新，测试通过");
 		var h = new Health();
-		h.setId("0127d8a43700dfa784ef5ba41bd35500");
+		h.setId("06591c911063db0bba63da28c9f7e353");
 		h.setTitle("bbb");
 		Assertions.assertEquals(c.modify(h).getCode(), 1);
 		log.info("update功能>>测试2：更新一条正常的健康信息，更新成功，测试通过");
@@ -71,10 +74,10 @@ class HealthTest {
 	}
 	@Test
 	void del() {
-		Assertions.assertEquals(c.delete(null).getData(), 0);
+		Assertions.assertEquals(c.delete(null).getCode(), 0);
 		log.info("delete功能>>测试1：删除一条null的健康信息，无法删除，测试通过");
 		var h = new Health();
-		h.setId("0127d8a43700dfa784ef5ba41bd35500");
+		h.setId("06591c911063db0bba63da28c9f7e353");
 		h.setTitle("bbb");
 		Assertions.assertEquals(c.modify(h).getCode(), 1);
 		log.info("delete功能>>测试2：删除一条正常的健康信息，更新成功，测试通过");

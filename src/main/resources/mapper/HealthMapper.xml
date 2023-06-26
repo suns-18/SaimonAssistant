@@ -15,10 +15,11 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.seimonassistant.entity.Health" useGeneratedKeys="true">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into health (title, `date`, memo
+    insert into health (id,title, `date`, memo
+      )<if test="title != null and title != ''">
+    values (#{id,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR}
       )
-    values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR}
-      )
+    </if>
   </insert>
   <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Health">
     <!-- @mbg.generated: generated automatically, do not modify! -->
