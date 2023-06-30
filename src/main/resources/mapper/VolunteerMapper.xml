@@ -9,7 +9,7 @@
     <result column="assignment" jdbcType="DECIMAL" property="assignment" />
     <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteById" parameterType="java.lang.String">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     delete from volunteer
     where id = #{id,jdbcType=VARCHAR}
@@ -21,7 +21,7 @@
     values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{assignment,jdbcType=DECIMAL}, 
       #{memo,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Volunteer">
+  <update id="update" parameterType="yu.seimonassistant.entity.Volunteer">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     update volunteer
     set title = #{title,jdbcType=VARCHAR},
@@ -30,7 +30,7 @@
       memo = #{memo,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     select id, title, `date`, `assignment`, memo
     from volunteer
