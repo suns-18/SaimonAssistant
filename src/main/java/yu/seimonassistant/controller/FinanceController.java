@@ -29,13 +29,13 @@ public class FinanceController {
 			else
 				return new HttpResponse(1, result, "删除成功");
 		} catch (Exception e) {
-			return new HttpResponse(0, result, "请求错误");
+			return new HttpResponse(0, result, "数据库访问出错");
 		}
 	}
 
 	@RequestMapping(value = "/modify", method = RequestMethod.POST)
 	public HttpResponse modify(@RequestBody Finance finance) {
-		int result = service.modifyFinanceInfo(finance);
+		int result = service.update(finance);
 		try {
 			if (result == 0)
 				return new HttpResponse(0, result, "修改失败");
@@ -43,21 +43,21 @@ public class FinanceController {
 				return new HttpResponse(1, result, "修改成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new HttpResponse(0, result, "请求错误");
+			return new HttpResponse(0, result, "数据库访问出错");
 		}
 	}
 
 	@RequestMapping(value = "/queryList", method = RequestMethod.POST)
 	public HttpResponse queryList() {
 		try {
-			List<Finance> result = service.queryFinanceList();
+			List<Finance> result = service.selectAll();
 			if (result.isEmpty())
 				return new HttpResponse(1, result, "收支记录为空");
 			else
 				return new HttpResponse(1, result, "查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new HttpResponse(0, null, "请求错误");
+			return new HttpResponse(0, null, "数据库访问出错");
 		}
 	}
 
@@ -71,7 +71,7 @@ public class FinanceController {
 				return new HttpResponse(1, result, "查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new HttpResponse(0, null, "请求错误");
+			return new HttpResponse(0, null, "数据库访问出错");
 		}
 	}
 
@@ -82,7 +82,7 @@ public class FinanceController {
 			return new HttpResponse(1, result, "查询成功");
 		} catch (Exception e) {
 			e.printStackTrace();
-			return new HttpResponse(0, null, "请求错误");
+			return new HttpResponse(0, null, "数据库访问出错");
 		}
 	}
 
@@ -97,7 +97,7 @@ public class FinanceController {
 				return new HttpResponse(1,result,"添加成功");
 
 		} catch (Exception e) {
-			return new HttpResponse(0,result,"请求错误");
+			return new HttpResponse(0,result,"数据库访问出错");
 		}
 	}
 }

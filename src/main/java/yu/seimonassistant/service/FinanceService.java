@@ -37,9 +37,9 @@ public class FinanceService {
 		return mapper.deleteByPrimaryKey(finance.getId());
 	}
 
-	public int modifyFinanceInfo(Finance finance){ return mapper.updateByPrimaryKey(finance); }
+	public int update(Finance finance){ return mapper.updateByPrimaryKey(finance); }
 
-	public List<Finance> queryFinanceList(){
+	public List<Finance> selectAll(){
 		// 你这里获取的是列表，不是单个
 		// 参数没有意义，别写
 		return mapper.selectAll();
