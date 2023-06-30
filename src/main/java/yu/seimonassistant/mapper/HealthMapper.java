@@ -6,28 +6,9 @@ import yu.seimonassistant.entity.Health;
 
 @Repository
 public interface HealthMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    int deleteByPrimaryKey(String id);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     int insert(Health row);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    Health selectByPrimaryKey(String id);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+    int deleteById(String id);
+    int update(Health row);
+    Health selectById(String id);
     List<Health> selectAll();
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    int updateByPrimaryKey(Health row);
 }

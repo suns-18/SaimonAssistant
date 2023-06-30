@@ -14,10 +14,10 @@ public class ReserveService {
     private ReserveMapper reserveMapper;
 
     public int deleteById(Reserve reserve) {
-        return reserveMapper.deleteByPrimaryKey(reserve.getId());
+        return reserveMapper.deleteById(reserve.getId());
     }
 
-    public int modifyReserveInfo(Reserve reserve){ return reserveMapper.updateByPrimaryKey(reserve); }
+    public int modifyReserveInfo(Reserve reserve){ return reserveMapper.update(reserve); }
 
     public int addReserveInfo(Reserve reserve){
         // 插入前生成ID
@@ -30,6 +30,6 @@ public class ReserveService {
     }
 
     public Reserve selectById(Reserve reserve){
-        return reserveMapper.selectByPrimaryKey(reserve.getId());
+        return reserveMapper.selectById(reserve.getId());
     }
 }

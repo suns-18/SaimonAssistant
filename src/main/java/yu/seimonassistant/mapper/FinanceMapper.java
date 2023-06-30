@@ -8,11 +8,16 @@ import yu.seimonassistant.entity.Finance;
 
 @Mapper
 public interface FinanceMapper {
-    int deleteByPrimaryKey(String id);
     int insert(Finance row);
-    Finance selectByPrimaryKey(String id);
-    List<Finance> selectByDuration(Date startTime, Date endTime);
-    List<Finance> selectAll();
-    int updateByPrimaryKey(Finance row);
 
+    int deleteById(String id);
+
+    int update(Finance row);
+
+    Finance selectById(String id);
+
+    List<Finance> selectBetweenDuration(
+            Date startTime, Date endTime);
+
+    List<Finance> selectAll();
 }

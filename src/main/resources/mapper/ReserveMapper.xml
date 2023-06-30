@@ -10,7 +10,7 @@
     <result column="end_time" jdbcType="TIMESTAMP" property="endTime" />
     <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteById" parameterType="java.lang.String">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     delete from reserve
     where id = #{id,jdbcType=VARCHAR}
@@ -22,7 +22,7 @@
     values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
       #{endTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR})
   </insert>
-  <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Reserve">
+  <update id="update" parameterType="yu.seimonassistant.entity.Reserve">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     update reserve
     set title = #{title,jdbcType=VARCHAR},
@@ -32,7 +32,7 @@
       memo = #{memo,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     select id, title, `date`, start_time, end_time, memo
     from reserve

@@ -6,28 +6,10 @@ import yu.seimonassistant.entity.Investment;
 
 @Repository
 public interface InvestmentMapper {
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    int delete(String id);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
     int insert(Investment row);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    Investment selectById(String id);
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
-    List<Investment> selectAll();
-
-    /**
-     * @mbg.generated generated automatically, do not modify!
-     */
+    int deleteById(String id);
     int update(Investment row);
+    Investment selectById(String id);
+    List<Investment> selectAll();
+    
 }

@@ -14,10 +14,10 @@ public class HealthService {
     private HealthMapper healthMapper;
 
     public int deleteById(Health health) {
-        return healthMapper.deleteByPrimaryKey(health.getId());
+        return healthMapper.deleteById(health.getId());
     }
 
-    public int update(Health health){ return healthMapper.updateByPrimaryKey(health); }
+    public int update(Health health){ return healthMapper.update(health); }
 
     public int addHealthInfo(Health health){
         // 插入前生成ID
@@ -30,7 +30,7 @@ public class HealthService {
     }
 
     public Health selectById(Health health){
-        return healthMapper.selectByPrimaryKey(health.getId());
+        return healthMapper.selectById(health.getId());
     }
 
 }

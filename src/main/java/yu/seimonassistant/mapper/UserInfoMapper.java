@@ -10,8 +10,8 @@ import yu.seimonassistant.entity.UserInfo;
 @Mapper
 public interface UserInfoMapper {
     int insert(UserInfo row);
-    int deleteByPrimaryKey(String id);
-    int updateByPrimaryKey(UserInfo row);
+    int deleteById(String id);
+    int update(UserInfo row);
     UserInfo selectByLoginInfo(UserInfo row);
     UserInfo selectById(String id);
     List<UserInfo> selectAll();

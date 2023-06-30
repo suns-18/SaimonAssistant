@@ -19,7 +19,7 @@ public class InvestService {
     }
 
     public int delele(Investment investment){
-        return mapper.delete(investment.getId());
+        return mapper.deleteById(investment.getId());
     }
     public int update(Investment investment){
         return mapper.update(investment);

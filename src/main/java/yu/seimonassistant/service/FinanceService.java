@@ -16,7 +16,7 @@ public class FinanceService {
 	private FinanceMapper mapper;
 
 	public FinanceStatResponse queryStat(FinanceRangeRequest req){
-		var durationList = mapper.selectByDuration(
+		var durationList = mapper.selectBetweenDuration(
 			req.getStartTime(), req.getEndTime());
 
 		var resp = new FinanceStatResponse();
@@ -34,10 +34,10 @@ public class FinanceService {
 	}
 
 	public int deleteById(Finance finance) {
-		return mapper.deleteByPrimaryKey(finance.getId());
+		return mapper.deleteById(finance.getId());
 	}
 
-	public int update(Finance finance){ return mapper.updateByPrimaryKey(finance); }
+	public int update(Finance finance){ return mapper.update(finance); }
 
 	public List<Finance> selectAll(){
 		// 你这里获取的是列表，不是单个
@@ -47,7 +47,7 @@ public class FinanceService {
 
 	public Finance selectById(Finance finance){
 		// 你这里获取的是单个，不是列表
-		return mapper.selectByPrimaryKey(finance.getId());
+		return mapper.selectById(finance.getId());
 	}
 	public int insert(Finance finance){
 		// 插入前生成ID

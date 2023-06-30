@@ -8,7 +8,7 @@
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
   </resultMap>
-  <delete id="delete" parameterType="java.lang.String">
+  <delete id="deleteById" parameterType="java.lang.String">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     delete from investment
     where id = #{id,jdbcType=VARCHAR}

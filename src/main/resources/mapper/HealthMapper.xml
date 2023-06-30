@@ -8,7 +8,7 @@
     <result column="date" jdbcType="TIMESTAMP" property="date" />
     <result column="memo" jdbcType="LONGVARCHAR" property="memo" />
   </resultMap>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.String">
+  <delete id="deleteById" parameterType="java.lang.String">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     delete from health
     where id = #{id,jdbcType=VARCHAR}
@@ -21,7 +21,7 @@
       )
     </if>
   </insert>
-  <update id="updateByPrimaryKey" parameterType="yu.seimonassistant.entity.Health">
+  <update id="update" parameterType="yu.seimonassistant.entity.Health">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     update health
     set title = #{title,jdbcType=VARCHAR},
@@ -29,7 +29,7 @@
       memo = #{memo,jdbcType=LONGVARCHAR}
     where id = #{id,jdbcType=VARCHAR}
   </update>
-  <select id="selectByPrimaryKey" parameterType="java.lang.String" resultMap="BaseResultMap">
+  <select id="selectById" parameterType="java.lang.String" resultMap="BaseResultMap">
     <!-- @mbg.generated: generated automatically, do not modify! -->
     select id, title, `date`, memo
     from health
