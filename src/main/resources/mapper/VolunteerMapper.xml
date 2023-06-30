@@ -16,9 +16,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.seimonassistant.entity.Volunteer" useGeneratedKeys="true">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into volunteer (title, `date`, `assignment`, 
+    insert into volunteer (id, title, `date`, `assignment`,
       memo)
-    values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{assignment,jdbcType=DECIMAL}, 
+    values (#{id,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{assignment,jdbcType=DECIMAL},
       #{memo,jdbcType=LONGVARCHAR})
   </insert>
   <update id="update" parameterType="yu.seimonassistant.entity.Volunteer">

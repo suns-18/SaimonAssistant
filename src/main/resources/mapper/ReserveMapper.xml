@@ -17,10 +17,11 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.seimonassistant.entity.Reserve" useGeneratedKeys="true">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into reserve (title, `date`, start_time, 
-      end_time, memo)
-    values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{startTime,jdbcType=TIMESTAMP}, 
-      #{endTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR})
+    insert into reserve (id,title, `date`, start_time,
+    end_time, memo)
+    values (#{id,jdbcType=VARCHAR},#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP},
+    #{startTime,jdbcType=TIMESTAMP},
+    #{endTime,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR})
   </insert>
   <update id="update" parameterType="yu.seimonassistant.entity.Reserve">
     <!-- @mbg.generated: generated automatically, do not modify! -->

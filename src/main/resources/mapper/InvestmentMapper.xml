@@ -15,9 +15,9 @@
   </delete>
   <insert id="insert" keyColumn="id" keyProperty="id" parameterType="yu.seimonassistant.entity.Investment" useGeneratedKeys="true">
     <!-- @mbg.generated: generated automatically, do not modify! -->
-    insert into investment (title, `date`, memo
+    insert into investment (id, title, `date`, memo
       )
-    values (#{title,jdbcType=VARCHAR}, #{date,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR}
+    values (#{id,jdbcType=VARCHAR}, #{title,jdbcType=VARCHAR},#{date,jdbcType=TIMESTAMP}, #{memo,jdbcType=LONGVARCHAR}
       )
   </insert>
   <update id="update" parameterType="yu.seimonassistant.entity.Investment">
