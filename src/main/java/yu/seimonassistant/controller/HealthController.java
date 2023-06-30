@@ -56,7 +56,7 @@ public class HealthController {
             else
                 return new HttpResponse(1, result, "修改成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            
             return new HttpResponse(0, result, "数据库访问出错");
         }
     }
@@ -70,7 +70,7 @@ public class HealthController {
             else
                 return new HttpResponse(1, result, "查询成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            
             return new HttpResponse(0, null, "数据库访问出错");
         }
     }

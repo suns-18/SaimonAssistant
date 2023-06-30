@@ -17,7 +17,7 @@ public class ReserveController {
     @Autowired
     private ReserveService reserveService;
     @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public HttpResponse addReserve(@RequestBody Reserve reserve){
+    public HttpResponse add(@RequestBody Reserve reserve){
         int result = -1;
         try {
             result= reserveService.insert(reserve);
@@ -31,7 +31,7 @@ public class ReserveController {
         }
     }
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
-    public HttpResponse deleteReserve(@RequestBody Reserve reserve) {
+    public HttpResponse delete(@RequestBody Reserve reserve) {
         int result = -1;
         try {
             result =reserveService.deleteById(reserve);
@@ -45,7 +45,7 @@ public class ReserveController {
     }
 
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
-    public HttpResponse modifyReserve(@RequestBody Reserve reserve) {
+    public HttpResponse modify(@RequestBody Reserve reserve) {
         int result = -1;
         result = reserveService.update(reserve);
         try {
@@ -54,13 +54,13 @@ public class ReserveController {
             else
                 return new HttpResponse(1, result, "修改成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            
             return new HttpResponse(0, result, "数据库访问出错");
         }
     }
 
     @RequestMapping(value = "/queryList", method = RequestMethod.POST)
-    public HttpResponse queryReserveList() {
+    public HttpResponse queryList() {
         try {
             List<Reserve> result = reserveService.selectAll();
             if (result.isEmpty())
@@ -68,13 +68,13 @@ public class ReserveController {
             else
                 return new HttpResponse(1, result, "查询成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            
             return new HttpResponse(0, null, "数据库访问出错");
         }
     }
 
     @RequestMapping(value = "/query", method = RequestMethod.POST)
-    public HttpResponse queryReserve(@RequestBody Reserve reserve) {
+    public HttpResponse queryById(@RequestBody Reserve reserve) {
         try {
             Reserve result = reserveService.selectById(reserve);
             if (result == null)
@@ -82,7 +82,7 @@ public class ReserveController {
             else
                 return new HttpResponse(1, result, "查询成功");
         } catch (Exception e) {
-            e.printStackTrace();
+            
             return new HttpResponse(0, null, "数据库访问出错");
         }
     }

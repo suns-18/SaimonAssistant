@@ -28,7 +28,7 @@ public class InvestController {
                 return new HttpResponse(1, result, "添加成功");
 
         } catch (Exception e) {
-            return new HttpResponse(0, -1, "数据库访问错误");
+            return new HttpResponse(0, 0, "数据库访问错误");
         }
     }
 
@@ -44,7 +44,7 @@ public class InvestController {
                 return new HttpResponse(1, result, "添加成功");
 
         } catch (Exception e) {
-            return new HttpResponse(0, -1, "数据库访问错误");
+            return new HttpResponse(0, 0, "数据库访问错误");
         }
     }
 
@@ -60,7 +60,7 @@ public class InvestController {
                 return new HttpResponse(1, result, "修改成功");
 
         } catch (Exception e) {
-            return new HttpResponse(0, -1, "数据库访问错误");
+            return new HttpResponse(0, 0, "数据库访问错误");
         }
     }
 
