@@ -37,7 +37,7 @@ public class InvestController {
             @RequestBody Investment investment) {
         int result;
         try {
-            result = service.delele(investment);
+            result = service.deleteById(investment);
             if (result == 0)
                 return new HttpResponse(0, result, "添加失败");
             else

@@ -14,7 +14,8 @@ public class VolunteerService {
     private VolunteerMapper mapper;
 
     public int insert(Volunteer volunteer) {
-        if(volunteer.getId().isEmpty())
+        if(volunteer.getId()==null ||
+                volunteer.getId().isEmpty())
             volunteer.setId(UUIDUtil.getOneUUID());
         return mapper.insert(volunteer);
     }

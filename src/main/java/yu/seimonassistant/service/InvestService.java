@@ -14,22 +14,25 @@ public class InvestService {
     private InvestmentMapper mapper;
 
     public int insert(Investment investment) {
-        investment.setId(UUIDUtil.getOneUUID());
+        if (investment.getId() == null ||
+                investment.getId().isEmpty())
+            investment.setId(UUIDUtil.getOneUUID());
         return mapper.insert(investment);
     }
 
-    public int delele(Investment investment){
+    public int deleteById(Investment investment) {
         return mapper.deleteById(investment.getId());
     }
-    public int update(Investment investment){
+
+    public int update(Investment investment) {
         return mapper.update(investment);
     }
 
-    public Investment selectById(Investment investment){
+    public Investment selectById(Investment investment) {
         return mapper.selectById(investment.getId());
     }
 
-    public List<Investment> selectAll(){
+    public List<Investment> selectAll() {
         return mapper.selectAll();
     }
 }

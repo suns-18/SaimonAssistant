@@ -13,19 +13,18 @@ public class ReserveService {
     @Autowired
     private ReserveMapper reserveMapper;
 
+    public int insert(Reserve reserve){
+        if(reserve.getId()==null || reserve.getId().isEmpty())
+            reserve.setId(UUIDUtil.getOneUUID());
+        return reserveMapper.insert(reserve);
+    }
     public int deleteById(Reserve reserve) {
         return reserveMapper.deleteById(reserve.getId());
     }
 
-    public int modifyReserveInfo(Reserve reserve){ return reserveMapper.update(reserve); }
+    public int update(Reserve reserve){ return reserveMapper.update(reserve); }
 
-    public int addReserveInfo(Reserve reserve){
-        // 插入前生成ID
-        reserve.setId(UUIDUtil.getOneUUID());
-        return reserveMapper.insert(reserve);
-    }
-
-    public List<Reserve> queryReserveList(){
+    public List<Reserve> selectAll(){
         return reserveMapper.selectAll();
     }
 

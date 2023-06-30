@@ -12,46 +12,47 @@ import java.util.List;
 
 @Service
 public class FinanceService {
-	@Autowired
-	private FinanceMapper mapper;
+    @Autowired
+    private FinanceMapper mapper;
 
-	public FinanceStatResponse queryStat(FinanceRangeRequest req){
+	public int insert(Finance finance) {
+		if (finance.getId() == null
+				|| finance.getId().isEmpty())
+			finance.setId(UUIDUtil.getOneUUID());
+		return mapper.insert(finance);
+	}
+
+    public int deleteById(Finance finance) {
+        return mapper.deleteById(finance.getId());
+    }
+
+    public int update(Finance finance) {
+        return mapper.update(finance);
+    }
+
+    public List<Finance> selectAll() {
+        return mapper.selectAll();
+    }
+
+    public Finance selectById(Finance finance) {
+        return mapper.selectById(finance.getId());
+    }
+
+	public FinanceStatResponse queryStat(FinanceRangeRequest req) {
 		var durationList = mapper.selectBetweenDuration(
-			req.getStartTime(), req.getEndTime());
+				req.getStartTime(), req.getEndTime());
 
 		var resp = new FinanceStatResponse();
 		resp.setCount(durationList.size());
 		resp.setTotalIn(durationList.stream()
 				.filter(finance -> finance.getAmount() > 0.0)
 				.mapToDouble(Finance::getAmount).sum()
-			);
+		);
 		resp.setTotalOut(durationList.stream()
-			.filter(finance -> finance.getAmount() < 0.0)
-			.mapToDouble(Finance::getAmount).sum()
+				.filter(finance -> finance.getAmount() < 0.0)
+				.mapToDouble(Finance::getAmount).sum()
 		);
 
 		return resp;
-	}
-
-	public int deleteById(Finance finance) {
-		return mapper.deleteById(finance.getId());
-	}
-
-	public int update(Finance finance){ return mapper.update(finance); }
-
-	public List<Finance> selectAll(){
-		// 你这里获取的是列表，不是单个
-		// 参数没有意义，别写
-		return mapper.selectAll();
-	}
-
-	public Finance selectById(Finance finance){
-		// 你这里获取的是单个，不是列表
-		return mapper.selectById(finance.getId());
-	}
-	public int insert(Finance finance){
-		// 插入前生成ID
-		finance.setId(UUIDUtil.getOneUUID());
-		return mapper.insert(finance);
 	}
 }

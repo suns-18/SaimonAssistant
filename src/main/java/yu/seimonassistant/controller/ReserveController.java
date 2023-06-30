@@ -20,7 +20,7 @@ public class ReserveController {
     public HttpResponse addReserve(@RequestBody Reserve reserve){
         int result = -1;
         try {
-            result= reserveService.addReserveInfo(reserve);
+            result= reserveService.insert(reserve);
             if (result == 0)
                 return new HttpResponse(0,result,"添加失败");
             else
@@ -47,7 +47,7 @@ public class ReserveController {
     @RequestMapping(value = "/modify", method = RequestMethod.POST)
     public HttpResponse modifyReserve(@RequestBody Reserve reserve) {
         int result = -1;
-        result = reserveService.modifyReserveInfo(reserve);
+        result = reserveService.update(reserve);
         try {
             if (result == 0)
                 return new HttpResponse(0, result, "修改失败");
@@ -62,7 +62,7 @@ public class ReserveController {
     @RequestMapping(value = "/queryList", method = RequestMethod.POST)
     public HttpResponse queryReserveList() {
         try {
-            List<Reserve> result = reserveService.queryReserveList();
+            List<Reserve> result = reserveService.selectAll();
             if (result.isEmpty())
                 return new HttpResponse(1, result, "储蓄记录为空");
             else

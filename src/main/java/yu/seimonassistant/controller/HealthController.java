@@ -21,7 +21,7 @@ public class HealthController {
     public HttpResponse add(@RequestBody Health health) {
         int result = -1;
         try {
-            result = service.addHealthInfo(health);
+            result = service.insert(health);
             if (result == 0)
                 return new HttpResponse(0, result, "添加失败");
             else
