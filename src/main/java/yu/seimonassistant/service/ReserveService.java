@@ -16,6 +16,10 @@ public class ReserveService {
     public int insert(Reserve reserve){
         if(reserve.getId()==null || reserve.getId().isEmpty())
             reserve.setId(UUIDUtil.getOneUUID());
+        if (reserve.getTitle() == null
+                || reserve.getTitle().isEmpty())
+            return 0;
+
         return reserveMapper.insert(reserve);
     }
     public int deleteById(Reserve reserve) {

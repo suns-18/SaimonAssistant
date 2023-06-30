@@ -17,6 +17,11 @@ public class HealthService {
         if (health.getId() == null
                 || health.getId().isEmpty())
             health.setId(UUIDUtil.getOneUUID());
+
+        if (health.getTitle() == null
+                || health.getTitle().isEmpty())
+            return 0;
+
         return healthMapper.insert(health);
     }
 

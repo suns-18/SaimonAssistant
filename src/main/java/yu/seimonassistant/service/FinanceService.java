@@ -15,12 +15,17 @@ public class FinanceService {
     @Autowired
     private FinanceMapper mapper;
 
-	public int insert(Finance finance) {
-		if (finance.getId() == null
-				|| finance.getId().isEmpty())
-			finance.setId(UUIDUtil.getOneUUID());
-		return mapper.insert(finance);
-	}
+    public int insert(Finance finance) {
+        if (finance.getId() == null
+                || finance.getId().isEmpty())
+            finance.setId(UUIDUtil.getOneUUID());
+
+        if (finance.getTitle() == null
+                || finance.getTitle().isEmpty())
+            return 0;
+
+        return mapper.insert(finance);
+    }
 
     public int deleteById(Finance finance) {
         return mapper.deleteById(finance.getId());
@@ -38,21 +43,21 @@ public class FinanceService {
         return mapper.selectById(finance.getId());
     }
 
-	public FinanceStatResponse queryStat(FinanceRangeRequest req) {
-		var durationList = mapper.selectBetweenDuration(
-				req.getStartTime(), req.getEndTime());
+    public FinanceStatResponse queryStat(FinanceRangeRequest req) {
+        var durationList = mapper.selectBetweenDuration(
+                req.getStartTime(), req.getEndTime());
 
-		var resp = new FinanceStatResponse();
-		resp.setCount(durationList.size());
-		resp.setTotalIn(durationList.stream()
-				.filter(finance -> finance.getAmount() > 0.0)
-				.mapToDouble(Finance::getAmount).sum()
-		);
-		resp.setTotalOut(durationList.stream()
-				.filter(finance -> finance.getAmount() < 0.0)
-				.mapToDouble(Finance::getAmount).sum()
-		);
+        var resp = new FinanceStatResponse();
+        resp.setCount(durationList.size());
+        resp.setTotalIn(durationList.stream()
+                .filter(finance -> finance.getAmount() > 0.0)
+                .mapToDouble(Finance::getAmount).sum()
+        );
+        resp.setTotalOut(durationList.stream()
+                .filter(finance -> finance.getAmount() < 0.0)
+                .mapToDouble(Finance::getAmount).sum()
+        );
 
-		return resp;
-	}
+        return resp;
+    }
 }

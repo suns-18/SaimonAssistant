@@ -17,6 +17,9 @@ public class InvestService {
         if (investment.getId() == null ||
                 investment.getId().isEmpty())
             investment.setId(UUIDUtil.getOneUUID());
+        if (investment.getTitle() == null
+                || investment.getTitle().isEmpty())
+            return 0;
         return mapper.insert(investment);
     }
 
