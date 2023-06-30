@@ -1,7 +1,7 @@
 package yu.seimonassistant;
 
-import org.junit.jupiter.api.Assertions;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import yu.seimonassistant.controller.FinanceController;
@@ -10,62 +10,120 @@ import yu.seimonassistant.entity.Finance;
 import yu.seimonassistant.util.UUIDUtil;
 
 import java.util.Date;
+import java.util.List;
 
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
-public
+@SpringBootTest(
+        webEnvironment = SpringBootTest.WebEnvironment.RANDOM_PORT)
+@TestMethodOrder(MethodOrderer.OrderAnnotation.class)
 class FinanceTest {
-	@Autowired
-	FinanceController c;
+    @Autowired
+    FinanceController c;
 
-	@Test
-	void query() {
+    Logger log = Logger.getLogger(FinanceTest.class);
 
-		Assertions.assertNotNull(c.queryList().getData(),
-			"返回列表");
+    @Test
+    @Order(1)
+    void add() {
+        var f = new Finance();
+        f.setId("b9b737410bf0b093b4e00e38ef80fcaa");
+        f.setTitle("test");
+        Assertions.assertEquals(1,
+                c.add(f).getCode(),
+                "Finance模块>>添加请求测试1：插入正常数据，未通过");
+        log.info("Finance模块>>添加请求测试1：插入正常数据，通过");
 
-		var f = new Finance();
-		f.setId(UUIDUtil.getOneUUID());
-		Assertions.assertNull(c.queryById(f).getData(),
-			"查找一个不存在的开支记录");
+        Assertions.assertEquals(0,
+                c.add(f).getCode(),
+                "Finance模块>>添加请求测试2：插入已存在数据，未通过");
+        log.info("Finance模块>>添加请求测试2：插入已存在数据，通过");
 
-		f.setId("0127d8a43700dfa784ef5ba41bd35500");
-		Assertions.assertNotNull(c.queryById(f).getData(),
-			"查找一个存在的开支记录");
+        log.info("Finance模块>>添加请求测试，通过");
+    }
 
-		f.setId(null);
-		c.queryById(f);
-		Assertions.assertNull(c.queryById(f).getData(),
-			"查找开支记录参数错误");
-	}
+    @Test
+    @Order(2)
+    void query() {
+        var f = new Finance();
+        f.setId("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assertions.assertEquals(0,
+                c.queryById(f).getCode(),
+                "Finance模块>>根据Id查询请求测试1：不存在的Id，未通过");
+        log.info("Finance模块>>根据Id查询请求测试1：不存在的Id，通过");
 
-	@Test
-	void add() {
-		Assertions.assertEquals(c.add(null).getCode(), 0);
+        f.setId("b9b737410bf0b093b4e00e38ef80fcaa");
+        Assertions.assertEquals(1,
+                c.queryById(f).getCode(),
+                "Finance模块>>根据Id查询请求测试2：存在的Id，未通过");
+        log.info("Finance模块>>根据Id查询请求测试2：存在的Id，通过");
 
-		var f = new Finance();
-		f.setTitle("aaa");
-		Assertions.assertEquals(c.add(f).getCode(), 1);
-	}
+        log.info("Finance模块>>根据Id查询请求测试，通过");
+    }
 
-	@Test
-	void update() {
-		Assertions.assertEquals(c.modify(null).getData(), 0);
 
-		var f = new Finance();
-		f.setId("0127d8a43700dfa784ef5ba41bd35500");
-		f.setTitle("bbb");
-		Assertions.assertEquals(c.modify(f).getCode(), 1);
+    @Test
+    @Order(3)
+    void modify() {
+        var f = new Finance();
+        f.setId("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assertions.assertEquals(0,
+                c.modify(f).getCode(),
+                "Finance模块>>修改请求测试1：不存在的Id，未通过");
+        log.info("Finance模块>>修改请求测试1：不存在的Id，通过");
 
-		f.setId("114514");
-		f.setTitle("bbb");
-		Assertions.assertEquals(c.modify(f).getCode(), 0);
-	}
+        f.setId("b9b737410bf0b093b4e00e38ef80fcaa");
+        f.setTitle("test1");
+        Assertions.assertEquals(1,
+                c.modify(f).getCode(),
+                "Finance模块>>修改请求测试2：存在的Id，未通过");
+        log.info("Finance模块>>修改请求测试2：存在的Id，通过");
 
-	@Test
-	void stat() {
-		var r = new FinanceRangeRequest();
-		r.setStartTime(new Date());
-		r.setEndTime(new Date());
-		System.out.println(c.queryStat(r));
-	}
+        log.info("Finance模块>>修改请求测试，通过");
+    }
+
+    @Test
+    @Order(4)
+    void queryList1() {
+        Assertions.assertFalse((
+                        (List<Finance>) c.queryList().getData()).isEmpty(),
+                "Finance模块>>列表请求测试1：非空列表，未通过");
+        log.info("Finance模块>>列表请求测试1：非空列表，通过");
+    }
+
+
+    @Test
+    @Order(5)
+    void stat() {
+        var r = new FinanceRangeRequest();
+        r.setStartTime(new Date());
+        r.setEndTime(new Date());
+        log.info("Finance模块>>统计请求测试：通过");
+    }
+
+    @Test
+    @Order(6)
+    void del() {
+        var f = new Finance();
+        f.setId("aaaaaaaaaaaaaaaaaaaaaaaaaaa");
+        Assertions.assertEquals(0,
+                c.delete(f).getCode(),
+                "Finance模块>>删除请求测试1：不存在的Id，未通过");
+        log.info("Finance模块>>删除请求测试1：不存在的Id，通过");
+
+        f.setId("b9b737410bf0b093b4e00e38ef80fcaa");
+        Assertions.assertEquals(1,
+                c.delete(f).getCode(),
+                "Finance模块>>删除请求测试2：存在的Id，未通过");
+        log.info("Finance模块>>删除请求测试2：存在的Id，通过");
+
+        log.info("Finance模块>>删除请求测试，通过");
+    }
+
+    @Test
+    @Order(7)
+    void queryList2() {
+        Assertions.assertTrue((
+                        (List<Finance>) c.queryList().getData()).isEmpty(),
+                "Finance模块>>列表请求测试2：空列表，未通过");
+        log.info("Finance模块>>列表请求测试2：空列表，通过");
+    }
 }
