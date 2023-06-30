@@ -7,7 +7,6 @@ import org.springframework.boot.test.context.SpringBootTest;
 import yu.seimonassistant.controller.FinanceController;
 import yu.seimonassistant.request.FinanceRangeRequest;
 import yu.seimonassistant.entity.Finance;
-import yu.seimonassistant.util.UUIDUtil;
 
 import java.util.Date;
 import java.util.List;
@@ -26,16 +25,21 @@ class FinanceTest {
     void add() {
         var f = new Finance();
         f.setId("b9b737410bf0b093b4e00e38ef80fcaa");
+        Assertions.assertEquals(0,
+                c.add(f).getCode(),
+                "Finance模块>>添加请求测试1：标题为空，未通过");
+        log.info("Finance模块>>添加请求测试1：标题为空，通过");
+
         f.setTitle("test");
         Assertions.assertEquals(1,
                 c.add(f).getCode(),
-                "Finance模块>>添加请求测试1：插入正常数据，未通过");
-        log.info("Finance模块>>添加请求测试1：插入正常数据，通过");
+                "Finance模块>>添加请求测试2：正常数据，未通过");
+        log.info("Finance模块>>添加请求测试2：正常数据，通过");
 
         Assertions.assertEquals(0,
                 c.add(f).getCode(),
-                "Finance模块>>添加请求测试2：插入已存在数据，未通过");
-        log.info("Finance模块>>添加请求测试2：插入已存在数据，通过");
+                "Finance模块>>添加请求测试3：插入已存在数据，未通过");
+        log.info("Finance模块>>添加请求测试3：插入已存在数据，通过");
 
         log.info("Finance模块>>添加请求测试，通过");
     }
@@ -96,6 +100,7 @@ class FinanceTest {
         var r = new FinanceRangeRequest();
         r.setStartTime(new Date());
         r.setEndTime(new Date());
+        System.out.println(c.queryStat(r));
         log.info("Finance模块>>统计请求测试：通过");
     }
 
