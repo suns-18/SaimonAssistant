@@ -16,7 +16,20 @@ import java.util.List;
 public class ReserveController {
     @Autowired
     private ReserveService reserveService;
+    @RequestMapping(value = "/add", method = RequestMethod.POST)
+    public HttpResponse addReserve(@RequestBody Reserve reserve){
+        int result = -1;
+        try {
+            result= reserveService.addReserveInfo(reserve);
+            if (result == 0)
+                return new HttpResponse(0,result,"添加失败");
+            else
+                return new HttpResponse(1,result,"添加成功");
 
+        } catch (Exception e) {
+            return new HttpResponse(0,result,"数据库访问出错");
+        }
+    }
     @RequestMapping(value = "/delete", method = RequestMethod.POST)
     public HttpResponse deleteReserve(@RequestBody Reserve reserve) {
         int result = -1;
@@ -71,21 +84,6 @@ public class ReserveController {
         } catch (Exception e) {
             e.printStackTrace();
             return new HttpResponse(0, null, "数据库访问出错");
-        }
-    }
-
-    @RequestMapping(value = "/add", method = RequestMethod.POST)
-    public HttpResponse addReserve(@RequestBody Reserve reserve){
-        int result = -1;
-        try {
-            result= reserveService.addReserveInfo(reserve);
-            if (result == 0)
-                return new HttpResponse(0,result,"添加失败");
-            else
-                return new HttpResponse(1,result,"添加成功");
-
-        } catch (Exception e) {
-            return new HttpResponse(0,result,"数据库访问出错");
         }
     }
 }

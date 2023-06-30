@@ -19,6 +19,21 @@ public class FinanceController {
 	@Autowired
 	private FinanceService service;
 
+	@RequestMapping(value = "/add", method = RequestMethod.POST)
+	public HttpResponse add(@RequestBody Finance finance){
+		int result = -1;
+		try {
+			result= service.insert(finance);
+			if (result == 0)
+				return new HttpResponse(0,result,"添加失败");
+			else
+				return new HttpResponse(1,result,"添加成功");
+
+		} catch (Exception e) {
+			return new HttpResponse(0,result,"数据库访问出错");
+		}
+	}
+
 	@RequestMapping(value = "/delete", method = RequestMethod.POST)
 	public HttpResponse delete(@RequestBody Finance finance) {
 		int result = -1;
@@ -83,21 +98,6 @@ public class FinanceController {
 		} catch (Exception e) {
 			e.printStackTrace();
 			return new HttpResponse(0, null, "数据库访问出错");
-		}
-	}
-
-	@RequestMapping(value = "/add", method = RequestMethod.POST)
-	public HttpResponse add(@RequestBody Finance finance){
-		int result = -1;
-		try {
-			result= service.insert(finance);
-			if (result == 0)
-				return new HttpResponse(0,result,"添加失败");
-			else
-				return new HttpResponse(1,result,"添加成功");
-
-		} catch (Exception e) {
-			return new HttpResponse(0,result,"数据库访问出错");
 		}
 	}
 }
