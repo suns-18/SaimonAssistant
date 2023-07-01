@@ -11,4 +11,4 @@ and -mon is a name prefix, just as "little" in "little tom".
 ## Relative
 [SeimonCore](https://github.com/NBDatsuya/SeimonCore)
 
-[SeimonDressing](https://github.com/NBDatsuya/SeimonDressing)
+[SeimonDressing-API](https://github.com/NBDatsuya/SeimonDressing-API)
